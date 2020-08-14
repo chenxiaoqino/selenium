@@ -16,6 +16,7 @@
 # under the License.
 
 import base64
+import codecs
 import copy
 import json
 import os
@@ -315,7 +316,7 @@ class FirefoxProfile(object):
             elif os.path.isdir(addon_path):
                 manifest_json_filename = os.path.join(addon_path, 'manifest.json')
                 if os.path.exists(manifest_json_filename):
-                    with open(manifest_json_filename, 'r') as f:
+                    with codecs.open(manifest_json_filename, 'r', 'utf-8-sig') as f:
                         return parse_manifest_json(f.read())
 
                 with open(os.path.join(addon_path, 'install.rdf'), 'r') as f:
